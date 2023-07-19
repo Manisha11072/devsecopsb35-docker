@@ -1,7 +1,6 @@
 FROM nginx:latest
 LABEL "author"="manishadornala11072@gmail.com" "creationdate"="july 11th"
 RUN apt update
-RUN apt update
 RUN apt install -y net-tools &&
     apt install -y curl nano &&
     apt install -y unzip jq iputils-ping &&
