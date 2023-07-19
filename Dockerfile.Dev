@@ -8,8 +8,8 @@ COPY index.html /usr/share/nginx/html/
 COPY contact.html /usr/share/nginx/html/
 COPY scorekeeper.js /usr/share/nginx/html/
 ADD style.css /usr/share/nginx/html/
-ADD https://releases.hashicorp.com/terraform/1.5.2/terraform_1.5.2_linux_amd64.zip.
-ADD https://releases.hashicorp.com/packer/1.9.1/packer_1.9.1_linux_amd64.zip.
+ADD https://releases.hashicorp.com/terraform/1.5.2/terraform_1.5.2_linux_amd64.zip .
+ADD https://releases.hashicorp.com/packer/1.9.1/packer_1.9.1_linux_amd64.zip .
 RUN unzip terraform_1.5.2_linux_amd64.zip
 RUN unzip packer_1.9.1_linux_amd64.zip
 RUN mv terraform /usr/local/bin
