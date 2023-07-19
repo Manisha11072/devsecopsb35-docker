@@ -3,6 +3,7 @@ LABEL "author"="manishadornala11072@gmail.com" "creationdate"="july 11th"
 RUN apt update
 RUN apt install -y net-tools
 RUN apt install -y curl nano
+RUN apt install -y unzip jq
 COPY index.html /usr/share/nginx/html/
 COPY contact.html /usr/share/nginx/html/
 COPY scorekeeper.js /usr/share/nginx/html/
@@ -16,4 +17,3 @@ RUN mv packer /usr/local/bin
 RUN rm -rf *.zip
 RUN terraform version
 RUN packer version
-CMD ["nginx", "-g", "daemon off;"]
