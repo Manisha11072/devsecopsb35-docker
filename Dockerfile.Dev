@@ -14,32 +14,21 @@ ENV AWS_SECRET_ACCESS_KEY="JHbbzUx8iuAX+em4FxEPR7WvONh5kSOb4QdROW11"
 ENV AWS_DEFAULT_REGION="us-east-1"
 
 # Install required packages and create a new user
-RUN apt-get update &&
-    apt-get install -y net-tools curl nano unzip jq iputils-ping &&
+RUN apt install -y net-tools &&
+    apt install -y curl nano &&
+    apt install -y unzip jq iputils-ping &&
     useradd testuser1
-
-# Copy static files to the Nginx html directory
 COPY index.html /usr/share/nginx/html/
 COPY contact.html /usr/share/nginx/html/
 COPY scorekeeper.js /usr/share/nginx/html/
 ADD style.css /usr/share/nginx/html/
-
-# Download and install Terraform and Packer
 ADD https://releases.hashicorp.com/terraform/${TFORM}/terraform_${TFORM}_linux_amd64.zip .
 ADD https://releases.hashicorp.com/packer/${PACK}/packer_${PACK}_linux_amd64.zip .
 RUN unzip terraform_${TFORM}_linux_amd64.zip &&
     unzip packer_${PACK}_linux_amd64.zip &&
     mv terraform /usr/local/bin &&
     mv packer /usr/local/bin &&
-    rm -rf *.zip &&
-    terraform version &&
-    packer version
-
-# Expose ports
+    rm -rf *.zip && terraform version && packer version
 EXPOSE 80 8080 8000
-
-# Set the user to run the container
 USER testuser1
-
-# Set the default command to run when the container starts
-CMD ["ping", "-c", "3", "www.google.com"]
+CMD ["ping", "-c 3", "www.goggle.com"]
